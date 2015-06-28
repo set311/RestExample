@@ -7,21 +7,26 @@
 //
 
 #import "ViewController.h"
-
-@interface ViewController ()
-
-@end
+#import "IRestServiceProtocol.h"
+#import "RestService.h"
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    self.restServiceProtol = [RestService new];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)cmd_refreshing:(id)sender {
+
+    NSString *url = @"URL";
+    NSDictionary *parameters = [NSDictionary dictionary];
+
+    [self.restServiceProtol callURL:url withParameters:parameters withCallBack:^(id response) {
+        int i = 0;
+    }];
+
 }
 
 @end

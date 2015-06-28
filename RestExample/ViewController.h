@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@protocol IRestServiceProtocol;
 
+@interface ViewController : UITableViewController
+
+
+@property(nonatomic, strong) id<IRestServiceProtocol> restServiceProtol;
 
 @end
 
