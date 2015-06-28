@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F3C836A039DBF6BE1F0C049 /* libPods-RestExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 380F2C0709B1A5D8CC208794 /* libPods-RestExample.a */; };
 		D72444B01B4062B200592126 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D72444AF1B4062B200592126 /* main.m */; };
 		D72444B31B4062B200592126 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D72444B21B4062B200592126 /* AppDelegate.m */; };
 		D72444B61B4062B200592126 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72444B51B4062B200592126 /* ViewController.m */; };
 		D72444B91B4062B200592126 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D72444B71B4062B200592126 /* Main.storyboard */; };
 		D72444BB1B4062B200592126 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D72444BA1B4062B200592126 /* Assets.xcassets */; };
 		D72444BE1B4062B200592126 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D72444BC1B4062B200592126 /* LaunchScreen.storyboard */; };
+		D72444CB1B406FA000592126 /* RestService.m in Sources */ = {isa = PBXBuildFile; fileRef = D72444C81B406FA000592126 /* RestService.m */; };
+		D72444CC1B406FA000592126 /* RestServiceAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = D72444CA1B406FA000592126 /* RestServiceAsync.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		380F2C0709B1A5D8CC208794 /* libPods-RestExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RestExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50D5995E6DDF944BC5708C73 /* Pods-RestExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RestExample/Pods-RestExample.release.xcconfig"; sourceTree = "<group>"; };
+		6FF45DE6AF525CDEAEF97458 /* Pods-RestExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RestExample/Pods-RestExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D72444AB1B4062B200592126 /* RestExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D72444AF1B4062B200592126 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D72444B11B4062B200592126 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +32,12 @@
 		D72444BA1B4062B200592126 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D72444BD1B4062B200592126 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D72444BF1B4062B200592126 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D72444C61B406FA000592126 /* IRestServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRestServiceProtocol.h; sourceTree = "<group>"; };
+		D72444C71B406FA000592126 /* RestService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestService.h; sourceTree = "<group>"; };
+		D72444C81B406FA000592126 /* RestService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestService.m; sourceTree = "<group>"; };
+		D72444C91B406FA000592126 /* RestServiceAsync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestServiceAsync.h; sourceTree = "<group>"; };
+		D72444CA1B406FA000592126 /* RestServiceAsync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestServiceAsync.m; sourceTree = "<group>"; };
+		D7D6627A1B4074EB00F72FA1 /* IMessageRepresentationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMessageRepresentationHandler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +45,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F3C836A039DBF6BE1F0C049 /* libPods-RestExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FA60327DBF6883D5E7AE195 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				380F2C0709B1A5D8CC208794 /* libPods-RestExample.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84A8CE289D650745A3DE9D1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6FF45DE6AF525CDEAEF97458 /* Pods-RestExample.debug.xcconfig */,
+				50D5995E6DDF944BC5708C73 /* Pods-RestExample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D72444A21B4062B200592126 = {
 			isa = PBXGroup;
 			children = (
 				D72444AD1B4062B200592126 /* RestExample */,
 				D72444AC1B4062B200592126 /* Products */,
+				84A8CE289D650745A3DE9D1D /* Pods */,
+				2FA60327DBF6883D5E7AE195 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +90,7 @@
 		D72444AD1B4062B200592126 /* RestExample */ = {
 			isa = PBXGroup;
 			children = (
+				D72444C51B406F8200592126 /* Rest */,
 				D72444B11B4062B200592126 /* AppDelegate.h */,
 				D72444B21B4062B200592126 /* AppDelegate.m */,
 				D72444B41B4062B200592126 /* ViewController.h */,
@@ -79,6 +112,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D72444C51B406F8200592126 /* Rest */ = {
+			isa = PBXGroup;
+			children = (
+				D7D662791B40749700F72FA1 /* protocol */,
+				D72444C71B406FA000592126 /* RestService.h */,
+				D72444C81B406FA000592126 /* RestService.m */,
+				D72444C91B406FA000592126 /* RestServiceAsync.h */,
+				D72444CA1B406FA000592126 /* RestServiceAsync.m */,
+			);
+			name = Rest;
+			sourceTree = "<group>";
+		};
+		D7D662791B40749700F72FA1 /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D7D6627A1B4074EB00F72FA1 /* IMessageRepresentationHandler.h */,
+				D72444C61B406FA000592126 /* IRestServiceProtocol.h */,
+			);
+			name = protocol;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D72444C21B4062B200592126 /* Build configuration list for PBXNativeTarget "RestExample" */;
 			buildPhases = (
+				CA903DFFEE7AAC54CD9933CF /* Check Pods Manifest.lock */,
 				D72444A71B4062B200592126 /* Sources */,
 				D72444A81B4062B200592126 /* Frameworks */,
 				D72444A91B4062B200592126 /* Resources */,
+				7FCE7C097ACBBD20BA25C2BA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -144,6 +200,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7FCE7C097ACBBD20BA25C2BA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RestExample/Pods-RestExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA903DFFEE7AAC54CD9933CF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D72444A71B4062B200592126 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -152,6 +241,8 @@
 				D72444B61B4062B200592126 /* ViewController.m in Sources */,
 				D72444B31B4062B200592126 /* AppDelegate.m in Sources */,
 				D72444B01B4062B200592126 /* main.m in Sources */,
+				D72444CC1B406FA000592126 /* RestServiceAsync.m in Sources */,
+				D72444CB1B406FA000592126 /* RestService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +350,7 @@
 		};
 		D72444C31B4062B200592126 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FF45DE6AF525CDEAEF97458 /* Pods-RestExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RestExample/Info.plist;
@@ -270,6 +362,7 @@
 		};
 		D72444C41B4062B200592126 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50D5995E6DDF944BC5708C73 /* Pods-RestExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RestExample/Info.plist;
@@ -298,6 +391,7 @@
 				D72444C41B4062B200592126 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
