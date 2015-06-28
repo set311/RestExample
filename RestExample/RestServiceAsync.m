@@ -29,15 +29,8 @@
 }
 
 - (void)retryRequest:(NSString *)uri parameters:(NSDictionary *)parameters getCallBack:(RESTCallBack)getCallBack {
-
-    RESTCallBack syncCallback = ^(id response) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            getCallBack(response);
-        });
-    };
-
-    dispatch_async(self.queue, ^{
-        [super retryRequest:uri parameters:parameters getCallBack:syncCallback];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [super retryRequest:uri parameters:parameters getCallBack:getCallBack];
     });
 }
 

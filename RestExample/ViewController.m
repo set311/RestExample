@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "IRestServiceProtocol.h"
-#import "RestService.h"
+#import "RestServiceAsync.h"
 
 @interface ViewController ()
 @property(nonatomic, copy) void (^callback)();
@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    RestService *restService = [RestService new];
+    RestService *restService = [RestServiceAsync new];
     [restService setMessageRepresentationHandler: self];
 
     self.restServiceProtol = restService;
@@ -27,7 +27,7 @@
 
 - (IBAction)cmd_refreshing:(id)sender {
 
-    NSString *url = @"URL";
+    NSString *url = @"https://www.pademobile.com:50/ws/util.py/paises";
     NSDictionary *parameters = [NSDictionary dictionary];
 
     [self.restServiceProtol callURL:url withParameters:parameters withCallBack:^(id response) {
