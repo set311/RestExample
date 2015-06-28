@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMessageRepresentationHandler.h"
 
 @protocol IRestServiceProtocol;
 
-@interface ViewController : UITableViewController
+@interface ViewController : UITableViewController <IMessageRepresentationHandler, UIAlertViewDelegate>
 
 
 @property(nonatomic, strong) id<IRestServiceProtocol> restServiceProtol;

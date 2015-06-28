@@ -10,12 +10,19 @@
 #import "IRestServiceProtocol.h"
 #import "RestService.h"
 
+@interface ViewController ()
+@property(nonatomic, copy) void (^callback)();
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.restServiceProtol = [RestService new];
+    RestService *restService = [RestService new];
+    [restService setMessageRepresentationHandler: self];
+
+    self.restServiceProtol = restService;
 }
 
 - (IBAction)cmd_refreshing:(id)sender {
@@ -24,9 +31,29 @@
     NSDictionary *parameters = [NSDictionary dictionary];
 
     [self.restServiceProtol callURL:url withParameters:parameters withCallBack:^(id response) {
-        int i = 0;
+        NSLog(@"Response: %@", response);
+        [[self refreshControl] endRefreshing];
     }];
 
 }
+
+- (void)showRetryTransferAlertViewWithBlock:(void (^)(void))callbackBlock {
+    self.callback = callbackBlock;
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Retry"
+                                                         message:@"Are you sure?"
+                                                        delegate:self
+                                               cancelButtonTitle:@"Ok"
+                                               otherButtonTitles:@"Retry", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex) {
+        self.callback();
+    } else {
+        [[self refreshControl] endRefreshing];
+    }
+}
+
 
 @end
