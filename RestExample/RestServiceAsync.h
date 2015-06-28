@@ -5,5 +5,4 @@
 
 @interface RestServiceAsync : RestService
 
-
 @end

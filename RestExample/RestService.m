@@ -1,80 +1,54 @@
-
-
 #import <CommonCrypto/CommonHMAC.h>
 #import "RestService.h"
 #import "Reachability.h"
 
 
-
 @implementation RestService
 
-- (id)init
-{
+- (void)callURL:(NSString *)URL
+ withParameters:(NSDictionary *)parameters
+   withCallBack:(RESTCallBack)getCallBack {
 
-    self = [super init];
-    if (self) {
-        self.apiUrl      = @"https://www.pademobile.com";
-    }
+    NetworkStatus networkStatus = [[Reachability reachabilityWithHostname:@"www.google.com"] currentReachabilityStatus];
 
-    return self;
-}
-
-
-- (void)__getFromURI:(NSString *)uri withParameters:(NSDictionary *)parameters withCallBack:(RESTCallBack)getCallBack
-{
-    Reachability  *reachabilityWithHostname = [Reachability reachabilityWithHostname:@"www.google.com"];
-    
-    NetworkStatus networkStatus = [reachabilityWithHostname currentReachabilityStatus];
-    
     if (networkStatus != NotReachable) {
-        
-        NSString *stringURL = [self apiUrl];
-        NSURL               *url     = [NSURL URLWithString:stringURL];
+
+        NSURL *url = [NSURL URLWithString:URL];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setTimeoutInterval:60];
 
         NSURLResponse *response = NULL;
-        NSError       *error    = NULL;
-        
-        NSLog(@"request: %@ ", request);
+        NSError *error = NULL;
         NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
         if (!error && responseData) {
-            NSError  *parsingError   = nil;
-            id       decodedResponse = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&parsingError];
-            NSString *stringResponse = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-
+            NSError *parsingError = nil;
+            id decodedResponse = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&parsingError];
             if (!parsingError) {
-            
-                NSLog(@"response: %@", stringResponse);
                 getCallBack(decodedResponse);
-                
-                return;
             } else {
-                
-                NSLog(@"Error [%@] response: %@", stringURL, stringResponse);
-
                 getCallBack(@{
                         @"status" : @(NO),
                         @"message" : @"Error crítico, favor de intentar más tarde",
                         @"error" : @"Parsing error"
                 });
-                return;
             }
+            return;
         }
-        NSLog(@"Error [%@] response: %@", stringURL, error);
+        NSLog(@"Error [%@] response: %@", [self apiUrl], error);
     }
-    
-    [self retryRequest:uri parameters:parameters getCallBack:getCallBack];
-    NSLog(@"Error en la comunicacion con el servicio %@", uri);
+
+    [self retryRequest:URL parameters:parameters getCallBack:getCallBack];
 }
 
-- (void)retryRequest:(NSString *)uri parameters:(NSDictionary *)parameters getCallBack:(RESTCallBack)getCallBack
-{
-    [[self messageRepresentationHandler] showRetryTransferAlertViewWithBlock:^
-    {
-        [self __getFromURI:uri withParameters:parameters withCallBack:getCallBack];
+- (void)retryRequest:(NSString *)uri
+          parameters:(NSDictionary *)parameters
+         getCallBack:(RESTCallBack)getCallBack {
+
+    [[self messageRepresentationHandler] showRetryTransferAlertViewWithBlock:^{
+        [self callURL:uri withParameters:parameters withCallBack:getCallBack];
     }];
+
 }
 
 @end
